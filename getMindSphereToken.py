@@ -23,14 +23,14 @@ class GettingMindSphereToken(object):
             path_to_chrome = Path('./chromedriver').absolute()
         self.browser = Chrome(path_to_chrome, chrome_options=options)
 
-    def steal_token(self, login, password, tokan_app_name, token_json):
+    def steal_token(self, login, password, token_app_name, token_json):
         self.browser.get('https://academy2.eu1.mindsphere.io')
         self.wait_until_css_element_object_found('#login-button')
         self.browser.find_element_by_css_selector('#emailaddress').send_keys(login)
         self.browser.find_element_by_css_selector('#passLogin').send_keys(password)
         self.browser.find_element_by_css_selector('#login-button').submit()
-        self.wait_until_css_element_object_found('[title= "' + tokan_app_name + '"]')
-        self.browser.find_element_by_css_selector('[title= "' + tokan_app_name + '"]').click()
+        self.wait_until_css_element_object_found('[title= "' + token_app_name + '"]')
+        self.browser.find_element_by_css_selector('[title= "' + token_app_name + '"]').click()
         self.wait_until_css_element_object_found('#myInput')
         self.mindsphere_token = self.browser.find_element_by_css_selector('#myInput').text
         print(self.mindsphere_token)
