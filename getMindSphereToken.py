@@ -10,12 +10,12 @@ import json
 
 class GettingMindSphereToken(object):
 
-    def __init__(self, head=False):
+    def __init__(self, headless=False):
         self.mindsphere_token = ''
         options = ChromeOptions()
         options.add_argument("disable-extensions")
         options.add_argument("incognito")
-        if head:
+        if headless:
             options.add_argument("headless")
         if os.name == 'nt':
             path_to_chrome = Path('.\chromedriver.exe').absolute()
