@@ -1,2 +1,4 @@
 hidden/credential.json
+hidden/token.json
 venv
+.idea
