@@ -23,12 +23,15 @@ class GettingMindSphereToken(object):
             path_to_chrome = Path('./chromedriver').absolute()
         self.browser = Chrome(path_to_chrome, chrome_options=options)
 
-    def steal_token(self, login, password, token_app_name, token_json):
+
+    def logging_in(self, login, password):
         self.browser.get('https://academy2.eu1.mindsphere.io')
         self.wait_until_css_element_object_found('#login-button')
         self.browser.find_element_by_css_selector('#emailaddress').send_keys(login)
         self.browser.find_element_by_css_selector('#passLogin').send_keys(password)
         self.browser.find_element_by_css_selector('#login-button').submit()
+
+    def steal_token(self, token_app_name, token_json):
         self.wait_until_css_element_object_found('[title= "' + token_app_name + '"]')
         self.browser.find_element_by_css_selector('[title= "' + token_app_name + '"]').click()
         self.wait_until_css_element_object_found('#myInput')
@@ -49,4 +52,5 @@ if __name__ == '__main__':
     fetching_token = GettingMindSphereToken()
     with open(credential_file, 'r') as reading_file:
         my_credentials = json.loads(reading_file.read())
-    fetching_token.steal_token(my_credentials['user_name'], my_credentials['password'], 'Token App', Path('hidden/token.json'))
+    fetching_token.logging_in(my_credentials['user_name'], my_credentials['password'])
+    # fetching_token.steal_token('Token App', Path('hidden/token.json'))
