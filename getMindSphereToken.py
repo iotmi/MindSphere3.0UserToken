@@ -18,18 +18,17 @@ class GettingMindSphereToken(object):
         if headless:
             options.add_argument("headless")
         if os.name == 'nt':
-            path_to_chrome = Path('.\chromedriver.exe').absolute()
+            path_to_chrome = str(Path('.\chromedriver.exe').relative_to('.'))
         else:
-            path_to_chrome = Path('./chromedriver').absolute()
+            path_to_chrome = str(Path('./chromedriver').absolute())
         self.browser = Chrome(path_to_chrome, chrome_options=options)
-
 
     def logging_in(self, login, password):
         self.browser.get('https://academy2.eu1.mindsphere.io')
         self.wait_until_css_element_object_found('#login-button')
         self.browser.find_element_by_css_selector('#emailaddress').send_keys(login)
         self.browser.find_element_by_css_selector('#passLogin').send_keys(password)
-        self.browser.find_element_by_css_selector('#login-button').submit()
+        # self.browser.find_element_by_css_selector('#login-button').submit()
 
     def steal_token(self, token_app_name, token_json):
         self.wait_until_css_element_object_found('[title= "' + token_app_name + '"]')

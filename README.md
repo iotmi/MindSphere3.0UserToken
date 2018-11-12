@@ -15,7 +15,7 @@ In the getMindSphereToken.py, edit the credential_file in to your path using the
 `Path(folderpath/filename.json)`
 ###Step 5
 Replace the Token App name with the name you called your tokenapp
-Run `python3 getMindSphereToken`
+Run `python3 getMindSphereToken.py`
 
 ####Optional Step:
 Chromedriver may become outdated. Please updated when the drivers become obsolete!
