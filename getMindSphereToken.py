@@ -18,7 +18,7 @@ class GettingMindSphereToken(object):
         if headless:
             options.add_argument("headless")
         if os.name == 'nt':
-            path_to_chrome = str(Path('.\chromedriver.exe').relative_to('.'))
+            path_to_chrome = str(Path('./chromedriver.exe').relative_to('.'))
         else:
             path_to_chrome = str(Path('./chromedriver').absolute())
         self.browser = Chrome(path_to_chrome, chrome_options=options)
