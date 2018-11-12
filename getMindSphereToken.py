@@ -28,7 +28,7 @@ class GettingMindSphereToken(object):
         self.wait_until_css_element_object_found('#login-button')
         self.browser.find_element_by_css_selector('#emailaddress').send_keys(login)
         self.browser.find_element_by_css_selector('#passLogin').send_keys(password)
-        # self.browser.find_element_by_css_selector('#login-button').submit()
+        self.browser.find_element_by_css_selector('#login-button').submit()
 
     def steal_token(self, token_app_name, token_json):
         self.wait_until_css_element_object_found('[title= "' + token_app_name + '"]')
